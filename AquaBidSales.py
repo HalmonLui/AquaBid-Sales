@@ -9,4 +9,13 @@ uClient = uReq(req)
 page_html = uClient.read()
 uClient.close()
 
+# put everything inside page_soup
 page_soup = soup(page_html, "html.parser")
+
+# fetch the seller names
+for link in page_soup.find_all('a'):
+    seller = (link.get('href'))
+    if seller is None:
+        continue
+    elif "viewseller" in seller:
+        print (seller.split("viewseller&",1)[1])

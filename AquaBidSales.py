@@ -12,10 +12,23 @@ uClient.close()
 # put everything inside page_soup
 page_soup = soup(page_html, "html.parser")
 
-# fetch the seller names
+
+# fetch the seller
+sellerList = []
 for link in page_soup.find_all('a'):
     seller = (link.get('href'))
     if seller is None:
         continue
     elif "viewseller" in seller:
-        print (seller.split("viewseller&",1)[1])
+        sellerList.append(seller.split("viewseller&",1)[1])
+
+
+# fetch the listing items
+itemList = []
+for num, link in enumerate(page_soup.find_all('a')):
+    title = (link.getText('href'))
+    itemList.append(title)
+    if itemList[num] in sellerList:
+        print ("Item: " + itemList[num-1])
+        print ("Seller: " + itemList[num])
+        print ()

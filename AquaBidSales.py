@@ -47,6 +47,7 @@ def getPrice(page_soup):
 # output information
 fullListing = {}
 page_soup = getWebpage('http://www.aquabid.com/cgi-bin/auction/auction.cgi?liveplantsm')    # url for AquaBid's moss section
+page_soups = getWebpage('http://www.aquabid.com/cgi-bin/auction/auction.cgi?liveplantsm&&&&&&&page=1&pb=0')
 getSeller(page_soup)
 getItem(page_soup)
 getPrice(page_soup)
